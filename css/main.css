@@ -1,22 +1,36 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
+body,
+html {
+    height: 100%;
+}
 
+.bg {
+    /* The image used */
+    background-image: url("../img/wc-cover.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.4);
+    background-blend-mode: lighten;
+}
 
+.caption {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.caption span.border {
+    background-color: #3379b7;
+    color: #fff;
+    font-size: 32px;
+    letter-spacing: 16px;
+}
