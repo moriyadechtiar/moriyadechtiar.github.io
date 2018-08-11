@@ -23,7 +23,7 @@ html {
 .caption {
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 25%;
     width: 100%;
     text-align: center;
 }
