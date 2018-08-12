@@ -4,8 +4,8 @@
 
 body {
     font-family: 'PT Serif', serif !important;
-    font-size: 18px !important;
-    line-height: 1.5 !important;
+    font-size: 20px !important;
+    line-height: 1.7 !important;
 }
 
 body,
@@ -49,4 +49,9 @@ html {
 .nav>li>a:hover {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
+}
+
+img.shield {
+    float: right;
+    width: 200px;
 }

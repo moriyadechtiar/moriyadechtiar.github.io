@@ -29,6 +29,7 @@
 
     <div class="container">
         <div class="row">
+            <img src="img/cs-109.png" class="shield" alt="">
             <ul class="nav nav-pills">
 
                 <li role="presentation">
@@ -173,6 +174,155 @@
                 </ul>
 
                 <h4>The above data was used in creating 3 datasets</h4>
+                <ul>
+                    <li>Players dataset: Including performance, and ranking scores by players names </li>
+                    <li>Teams dataset: Including information about the team performance history, as well as name, confederation
+                        etc.
+                    </li>
+                    <li>Games dataset: Including head to head match results collected as well as information about the game day,
+                        temperature, location etc.</li>
+                </ul>
+                <br>
+                <h3>Data Cleaning & Preparation</h3>
+                <h4>Differences in Data Representation</h4>
+                <ul>
+                    <li>One challenge was consolidating data coming from different sources and which was represented differently.
+                        Some python procedures were used in order to do the consolidation, but in some cases manual work
+                        was required.</li>
+                    <li>Due to political changes, we noticed several countries have changed names or are referred to differently
+                        in different sources. We had to manually compare and do the matching when merging Country Name based
+                        information.
+                    </li>
+                </ul>
+
+                <h4>Merging Datasets</h4>
+                <ul>
+                    <li>Since the Game outcome is impacted by Team level information there was a need to aggregate some game
+                        information into a team level statistic and then to be merges into the games dataset. Same happened
+                        for players information.</li>
+                </ul>
+
+                <br>
+                <h4>
+                    <b>Missing Data Analysis</b>
+                </h4>
+                <ul style="list-style: none;">
+                    <li>
+
+                        <ul>
+                            <li>2% of games data had missing statistics for 2015 games</li>
+                            <li>25% missing goal keeping skills scores</li>
+                            <li>2.5% of games data had missing statistics for 2016 games</li>
+                            <li>13% of time and distance information was missing</li>
+                            <li>3 values missing for team confederation</li>
+                        </ul>
+
+                        <h4>
+                            <b>When Zero is a Valid Value?</b>
+                        </h4>
+                        <ul>
+                            <li>We see above some columns are showing as missing values when in fact the 0 value in them is valid.
+                                For instance: a_team_distance or a_team_distance can be 0 if the team is playing at home.
+                                Similarly for time difference columns</li>
+                            <li>History values for previous WC participations or titles are valid and most cases are 0 for the
+                                less performing teams
+                            </li>
+                        </ul>
+
+                        <h4>
+                            <b>When Zero is a Missing Value ?</b>
+                        </h4>
+                        <ul>
+                            <li>While a zero can be a valid value for some columns, for others we should consider it as missing.
+                                temp, games, fifa_score or fifa_points all should have non zero values, and if not, those
+                                lines should be dropped from the dataset or impute values to replace the zeros</li>
+                            <li>Rows with missing confederation values will also be dropped</li>
+                        </ul>
+
+                        <h4>
+                            <b>Goalkeeper Skills</b>
+                        </h4>
+                        <ul>
+                            <li>About 25% of our games are played by teams for which we have no Goalkeeper Skills value. This
+                                is too big of a value for us to try and impute or just drop those rows, so we will instead
+                                just not use this column in our model.</li>
+                        </ul>
+
+                        <h4>
+                            <b>Per Year Performance</b>
+                        </h4>
+                        <ul>
+                            <li>While we have a small number of teams for which we had no games statistics for between 2015 and
+                                2017, we had quite a few more of those for the year 2018. This could be due to the fact that
+                                we only had 6 months worth of games data to collect before the World Cup games began. Also,
+                                less performing teams do play a lot less. So we will drop the 2018 performance columns, but
+                                keep years 2015-2017 with only dropping the rows with the missing values</li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+                <h4>Duplicate Information</h4>
+                <ul>
+                    <li>Some predictors were derived or calculated from one another and so we removed such columns. One example
+                        is for player information we had both birthdate and age. We removed birth date</li>
+                </ul>
+
+                <h4>Normalization</h4>
+                <ul>
+                    <li>In our team statistics that we created there is a risk of skewed information as some teams play more
+                        than others. Therefore there is a need to normalize this data.</li>
+                </ul>
+
+                <br>
+                <h3>Feature Engineering</h3>
+                <p>Other than the FIFA team rank and points which we obtained, we wanted to create more team based predictors
+                    that we can add and could possibly be more effective than the FIFA numbers</p>
+
+                <ul>
+                    <li>Initial EDA and consulting with professional advise, we have decided to include only recent performance
+                        of a team in the games dataset and this is due to the fact that there are many changes the occur
+                        in the teams squads between tournaments</li>
+
+                    <li><b>Players aggregated information:</b> This includes average age, average rank, average players experience</li>
+
+                    <li><b>Team aggregated yearly statistics:</b> We have team performance aggregated per year, and after performing
+                        some data analysis this appears to have</li>
+
+                    <li><b>Per-capita soccer players:</b> We decided to include the number of soccer players in a country as an indicator
+                        of how strong that country is at soccer. This of course needs to account for the population in that
+                        country so there is no advantage for larger countries. We used wikipedia to scrape population numbers
+                        and sofifa.com to get players information.</li>
+
+                    <li><b>Aggressive Team:</b> We classified teams as "Aggressive" if their specific goals_for average was higher that
+                        the total average. So they tend to score more goals on average
+                    </li>
+
+                    <li><b>Protective Team:</b> We classified teams as "Protective" if their specific goals_against average was lower
+                        that the total average. So they tend to get less goals on average (better goalkeeper maybe)
+                    </li>
+
+                    <li><b>Homeness Factor:</b> In order to apply to world cup games (no home teams except for the host), we wanted
+                        to expand the concept of home advantage. We created the following scale:
+
+                        <ul>
+                            <li>-2 -> team is significantly less favourable than its opponent (for instance other team is at
+                                home)
+                            </li>
+
+                            <li>-1 -> team is less favourable than its opponent (for instance other team is at its area confederation)
+                            </li>
+
+                            <li>0 -> both teams have same level of homeness (both area-home, or both non area-home)
+                            </li>
+
+                            <li>1 -> opposite of -1</li>
+
+                            <li>2 -> opposite of -2</li>
+                        </ul>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
