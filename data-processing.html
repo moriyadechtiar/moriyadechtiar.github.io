@@ -1,0 +1,193 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CS-109</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="container">
+        <div class="row">
+            <ul class="nav nav-pills">
+
+                <li role="presentation">
+                    <a href="/">Home</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="introduction.html">Introduction</a>
+                </li>
+
+                <li role="presentation" class="active">
+                    <a href="data-processing.html">Data Processing</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="#">Page4</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Description of Raw Data</h1>
+                <h3>Data was collected and scraped from the following websites</h3>
+                <ul>
+                    <li>
+                        <h4>fifa.com</h4>
+                        <ul>
+                            <li>
+                                <p>
+                                    <b>Team ranking</b>
+                                    <br> FIFA itself has a ranking system based on overall team performance.
+                                    <br>This rank has 2 predictors we will be using: team_rank, team_points.
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>
+                                    <b>Team historical statistics</b>
+                                    <br> FIFA presented historical information per national team based on their participation
+                                    and performance in previous soccer tournaments.
+                                    <br> We have chosen to focus on number of participations and number of times reached one
+                                    of the top 4 places.
+                                    <br> This data was acquired for previous World Cups, Confederation Cups and previous Summer
+                                    Olympics.
+                                    <br> Also, for each time we have compiled a total score of goals for and goals against from
+                                    all games played (preliminary, friendlies and Olympics)
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>
+                                    <b>Preliminary games results</b>
+                                    <br> In the three years preceding the World Cup there are preliminary games that determine
+                                    the countries that will qualify for the World Cup.
+                                    <br> We have collected for each game, the date, time, countries, goals for and against, the
+                                    outcome, if it was raining or extremely hot, the distance and time difference for the
+                                    away team.
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>
+                                    <b>Olympics games results</b>
+                                    <br> Two years prior to the World Cup, Summer Olympics soccer games take place.
+                                    <br> We collected each match information similar to what we did for the preliminary games.
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h4>whoscored.com</h4>
+                        <ul>
+                            <li>
+                                <p>
+                                    <b>International friendly games results</b>
+                                    <br> We collected each match information similar to what we did for the preliminary games
+                                    for any international friendly game that took place since the previous World Cup.
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>
+                                    <b>Players statistics</b>
+                                    <br> We have collected information on the the players that participated in the World Cup
+                                    for all teams. This has each players statistics and we use this team-aggregated data
+                                    in our total per team ranks.
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h4>timeanddate.com</h4>
+                        <ul>
+                            <li>
+                                <p>
+                                    <b>Weather feature</b>
+                                    <br> We collected the temperature at the time of each match. In addition, we indicated whether
+                                    it rained at the time of the match, or whether there was extreme heat. Extreme heat was
+                                    considered to be any temperature higher than 32°C.
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>
+                                    <b>Time zone feature</b>
+                                    <br> We collected information about the timezone of each country competing in the matches.
+                                    Bigger countries have multiple timezones, so the timezone of the country’s capital city
+                                    was generally used.
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>
+                                    <b>Distance feature</b>
+                                    <br> We collected information about the distance between each country and the loc_city (city
+                                    where the match was played)
+                                </p>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h4>sofifa.com </h4>
+                        <ul>
+                            <li>
+                                <p>
+                                    <b>Individual player statistics</b>
+                                    <br> Individual player statistics like height, weight, age, position, ratings, and performance
+                                    skills were used to gain insight on what ultimately gives certain teams a competitive
+                                    edge.
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>The above data was used in creating 3 datasets</h4>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
+    </script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

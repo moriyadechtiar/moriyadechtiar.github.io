@@ -2,6 +2,12 @@
    Author's custom styles
    ========================================================================== */
 
+body {
+    font-family: 'PT Serif', serif !important;
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+}
+
 body,
 html {
     height: 100%;
