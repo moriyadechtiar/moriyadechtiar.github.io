@@ -1,0 +1,230 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CS-109</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="container">
+        <div class="row">
+            <img src="img/cs-109.png" class="shield" alt="">
+            <ul class="nav nav-pills">
+
+                <li role="presentation">
+                    <a href="/">Home</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="introduction.html">Introduction</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="data-processing.html">Data Processing</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="eda.html">Exploratory Data Analysis</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="feature-selection.html">Feature Selection</a>
+                </li>
+
+                <li role="presentation" class="active">
+                    <a href="models.html">Models</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="results.html">Results & Final Notes</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>Baseline Model</h3>
+                <p>
+                    <b>Points Expectancy & W/L/D:</b>
+                </p>
+                <p>
+                    A logistic regression model was used with multinomial options and utilizing all the features.
+                </p>
+
+                <div class="col-12">
+                    <img src="img/baseline.png" alt="">
+                </div>
+
+                <p>Train accuracy for classifying outcome 0.5980066445182725
+                    <br>Test accuracy for classifying outcome 0.5436893203883495</p>
+
+                <p>
+                    <b>Goal Difference:</b>
+                </p>
+                <p>A linear regression model was used with all features.</p>
+
+                <div class="col-12">
+                    <img src="img/goal_diff.png" alt="">
+                </div>
+
+                <p>R^2 on training set for predicting goal difference: 0.513241263491159
+                    <br>R^2 on testing set for predicting goal difference: -32106974922427.902</p>
+
+                <p>The R^2 scores are showing this model is not a good fit for the data, as we can see with the following plots:
+                </p>
+
+                <div class="col-12">
+                    <img src="img/prediction_vs_true_value.png" alt="">
+                </div>
+
+                <h3>Additional Models</h3>
+                <h3>KNN</h3>
+                <p>As the linear regression and logistic ones didn’t describe the data relationship very well, a KNN model was
+                    created as it allow predictions in cases where the relationship is difficult to describe or formulate.
+                    The first KNN model attempted included all features.
+                    <br>Cross validation was used in order to select the optimal K value. This model is most interesting due
+                    to the fact that the train and test accuracy are very similar as opposed to other models where we see
+                    a drop in accuracy when going from train to test.
+                </p>
+
+                <div class="col-12">
+                    <img src="img/knn.png" alt="">
+                </div>
+
+                <h3>Linear Discriminant analysis</h3>
+                <p>All features used here as well</p>
+                <div class="col-12">
+                    <img src="img/liniar_discriminant.png" alt="">
+                </div>
+
+                <h3>Logistic Regression</h3>
+                <p>After our baseline model, we reran this model on the selected subset of feature and added polynomial terms
+                    to the design matrix.</p>
+                <div class="col-12">
+                    <img src="img/logistic_regression.png" alt="">
+                </div>
+
+                <h3>QDA</h3>
+                <p>The same design matrix was used in quadratic discriminant analysis.</p>
+
+                <div class="col-12">
+                    <img src="img/qda.png" alt="">
+                </div>
+
+                <h3>Decision Trees</h3>
+                <p>Cross validation was used to determine optimal depth for our decision tree when using all features. That
+                    depth was surprisingly set to be 1. We them attempted the same but with our subset of forward selected
+                    features. This time the optimal depth of 3 was selected. As the results were still not satisfactory,
+                    we attempted bagging to decrease variance and maybe get a better result.
+                </p>
+                <div class="col-12">
+                    <img src="img/decision_tree.png" alt="">
+                </div>
+
+                <h3>Random Forest</h3>
+                <p>Here we are fitting a random forest model which is the most successful so far. </p>
+                <div class="col-12">
+                    <img src="img/random_forest.png" alt="">
+                </div>
+
+                <h3>Boosting - AdaBoost</h3>
+                <p>Boosting may be able to improve our results.
+                    <br>Cross validating the max depth of iterations and running the model.
+                </p>
+
+                <div class="col-12">
+                    <img src="img/boosting1.png" alt="">
+                </div>
+
+                <div class="col-12">
+                    <img src="img/boosting2.png" alt="">
+                </div>
+
+                <h3>Tree depth optimization resulted in:</h3>
+                <div class="col-12">
+                    <img src="img/tree_depth_optimization1.png" alt="">
+                </div>
+
+                <div class="col-12">
+                    <img src="img/tree_depth_optimization2.png" alt="">
+                </div>
+
+                <p>Adaboost produced a relatively high test result of 0.582</p>
+
+                <h3>Bagging</h3>
+                <p>Our decision trees were not very successful, if different trees are getting different types of errors, maybe
+                    averaging them will get rid of the errors.</p>
+
+                <div class="col-12">
+                    <img src="img/bagging.png" alt="">
+                </div>
+
+                <h3>Ensembles</h3>
+                <p>We have collected predictions from all our models above, and have created 2 Meta Models.</p>
+
+                <p>Logistic Regression Meta Model:</p>
+                <div class="col-12">
+                    <img src="img/ensembles_logistic_regression.png" alt="">
+                </div>
+
+                <p>Random Forest Meta Model (CV resulted in depth of 3)</p>
+                <div class="col-12">
+                    <img src="img/ensembles_random_forest.png" alt="">
+                </div>
+
+                <p>Excellent accuracy on the train set and our best accuracy on the test set so far! 0.59.</p>
+
+                <p>We can also look at the importance of the different models:</p>
+                <div class="col-12">
+                    <img src="img/diff_model_importance.png" alt="">
+                </div>
+
+                <p>We also fitted the above models on a matrix that includes both predictions and original data columns but
+                    the results were not improved significantly.</p>
+
+                <h3>ANN:</h3>
+                <p>Finally we made a quick attempt at a neural network classifier but it underperformed the other models and
+                    possibly needed additional tuning.</p>
+
+                <div class="col-12">
+                    <img src="img/ann.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
+        </script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+</body>
+
+</html>
