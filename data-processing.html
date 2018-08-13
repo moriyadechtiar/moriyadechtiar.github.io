@@ -45,7 +45,11 @@
                 </li>
 
                 <li role="presentation">
-                    <a href="#">Page4</a>
+                    <a href="eda.html">Exploratory Data Analysis</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="feature-selection.html">Feature Selection</a>
                 </li>
 
             </ul>
@@ -55,7 +59,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>Description of Raw Data</h1>
+                <h3>Description of Raw Data</h3>
                 <h3>Data was collected and scraped from the following websites</h3>
                 <ul>
                     <li>
@@ -284,26 +288,32 @@
                         of a team in the games dataset and this is due to the fact that there are many changes the occur
                         in the teams squads between tournaments</li>
 
-                    <li><b>Players aggregated information:</b> This includes average age, average rank, average players experience</li>
+                    <li>
+                        <b>Players aggregated information:</b> This includes average age, average rank, average players experience</li>
 
-                    <li><b>Team aggregated yearly statistics:</b> We have team performance aggregated per year, and after performing
+                    <li>
+                        <b>Team aggregated yearly statistics:</b> We have team performance aggregated per year, and after performing
                         some data analysis this appears to have</li>
 
-                    <li><b>Per-capita soccer players:</b> We decided to include the number of soccer players in a country as an indicator
-                        of how strong that country is at soccer. This of course needs to account for the population in that
-                        country so there is no advantage for larger countries. We used wikipedia to scrape population numbers
-                        and sofifa.com to get players information.</li>
+                    <li>
+                        <b>Per-capita soccer players:</b> We decided to include the number of soccer players in a country as
+                        an indicator of how strong that country is at soccer. This of course needs to account for the population
+                        in that country so there is no advantage for larger countries. We used wikipedia to scrape population
+                        numbers and sofifa.com to get players information.</li>
 
-                    <li><b>Aggressive Team:</b> We classified teams as "Aggressive" if their specific goals_for average was higher that
-                        the total average. So they tend to score more goals on average
+                    <li>
+                        <b>Aggressive Team:</b> We classified teams as "Aggressive" if their specific goals_for average was
+                        higher that the total average. So they tend to score more goals on average
                     </li>
 
-                    <li><b>Protective Team:</b> We classified teams as "Protective" if their specific goals_against average was lower
-                        that the total average. So they tend to get less goals on average (better goalkeeper maybe)
+                    <li>
+                        <b>Protective Team:</b> We classified teams as "Protective" if their specific goals_against average
+                        was lower that the total average. So they tend to get less goals on average (better goalkeeper maybe)
                     </li>
 
-                    <li><b>Homeness Factor:</b> In order to apply to world cup games (no home teams except for the host), we wanted
-                        to expand the concept of home advantage. We created the following scale:
+                    <li>
+                        <b>Homeness Factor:</b> In order to apply to world cup games (no home teams except for the host), we
+                        wanted to expand the concept of home advantage. We created the following scale:
 
                         <ul>
                             <li>-2 -> team is significantly less favourable than its opponent (for instance other team is at

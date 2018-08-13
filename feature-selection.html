@@ -1,0 +1,157 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CS-109</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="container">
+        <div class="row">
+            <img src="img/cs-109.png" class="shield" alt="">
+            <ul class="nav nav-pills">
+
+                <li role="presentation">
+                    <a href="/">Home</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="introduction.html">Introduction</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="data-processing.html">Data Processing</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="eda.html">Exploratory Data Analysis</a>
+                </li>
+
+                <li role="presentation" class="active">
+                    <a href="feature-selection.html">Feature Selection</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>FIFA Rank Validity</h3>
+                <p>
+                    With ~130 columns it could start to become noisy. Let's try and find the most significant predictors only.
+                </p>
+
+                <ul>
+                    <li>
+                        <b>Statistically Significant Features</b>
+                        <br>Regression models offer us analysis of the statistically significant features, the predictors for
+                        which the p-value is smaller than 0.05. When running our baseline regression model for goal difference
+                        we found this list of significant features to be empty. Meaning none of the feature show a significant
+                        linear relationship with our target.
+                    </li>
+
+                    <li>
+                        <b>Correlation Analysis</b>
+                        <br>Since we are dealing with a high dimensional dataset, we have grouped the features and ran the correlation
+                        on each group to find positive correlated featured with our target.
+
+                        <div class="col-12">
+                            <img src="img/features1.png" alt="">
+                        </div>
+
+                        <div class="col-12">
+                            <img src="img/features2.png" alt="">
+                        </div>
+
+                        <p>The following features showed positive correlation with our target: 'players_rate_y', 'Age_x', 'win_y',
+                            'loss_x', 'goals_for_y', 'goals_against_x', 'aggressive _y', 'protective _y', 'fifa_points_y',
+                            'fifa_rank_x'
+                        </p>
+
+                        <p>KNN, LDA and Linear Regression models were all rerun with the above set of features.</p>
+
+                        <ul>
+                            <li>KNN - both train and test results are worse</li>
+                            <li>LDA - decreased accuracy on the train set but a 10% improvement in the test accuracy.</li>
+                            <li>Linear Regression: R squared score was improved significantly on both train and test set. This
+                                time the significant features list was not empty and included:
+                                <ul>
+                                    <li>const -7.656067</li>
+                                    <li>win_y 2.175747</li>
+                                    <li>fifa_points_y 0.000921</li>
+                                    <li>fifa_rank_x 0.009149</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <b>Forward Stepwise Selection</b>
+                        <br>
+                        <p>Implementation of this algorithm produced the following subset of selected predictors: 'fifa_rank_x',
+                            'fifa_rank_y', 'loss_x', 'goals_against_x', 'goals_for_x', '2016_goals_for_y', 'goals_against_y'
+                        </p>
+                        <p>This list is very similar to our correlation analysis above with the exception of the protective
+                            and aggressive features. </p>
+
+                        <p>Models ran with this subset of predictors and results are as follow</p>
+                        <ul>
+                            <li>Logistic regression was significantly improved on the training score but not on the testing score
+                                which even decreased a bit.</li>
+                            <li>Having a small subset of predictors made it possible to add polynomial terms to our regression
+                                and also run QDA. Both achieved improved scores compared with our “All features” models.</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <b>Random Forest Features Importance</b>
+                        <br>
+                        <p>Our Random Forest model ran with cross validation to select the optimal tree depth. It resulted in
+                            our highest score on the test set. Its importance features analysis produced:
+                        </p>
+
+                        <div class="col-12">
+                            <img src="img/importance.png" alt="">
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
+        </script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+</body>
+
+</html>
