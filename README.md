@@ -1,2 +1,1 @@
-# moriyadechtiar.github.io
-FIFA World Cup 2018 
+# FIFA World Cup Predictive Model 2018 
